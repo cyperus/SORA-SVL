@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Input, Space } from 'antd';
+import { Input } from 'antd';
 import Grid from '../../components/Grid';
 import Layout from '../../components/Layout';
 import { searchFilter } from '../../utils/searchFilter';
@@ -8,7 +8,6 @@ import { Vehicle } from '../../utils/types';
 import { listVehicles } from '../../api/vehicle';
 const { Search } = Input;
 function Vehicles() {
-  const [loading, setLoading] = useState(true);
   const [data, setData] = useState<Vehicle[]>([]);
   const [search, setSearch] = useState('');
 

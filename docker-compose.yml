@@ -8,7 +8,12 @@ services:
     depends_on:
       - mongo
     volumes:
-      - ./server/assets:/workdir/assets
+      - ./server:/workdir
+      - /workdir/node_modules
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    command: npm run dev
     networks:
       - sorasvl
 
