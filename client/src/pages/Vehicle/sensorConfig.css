@@ -1,0 +1,86 @@
+.item {
+  width: 100%;
+  height: 32px;
+  background: #343c4d;
+  border-radius: 2px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #c9d2e5;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.config-left {
+  width: 360px;
+  height: 100%;
+  background-color: var(--editor-bg, #f5f7fa);
+  border-right: 1px solid var(--editor-divider, #f2f5f8);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.sensor-view {
+  position: absolute;
+  /* overflow: hidden; */
+  right: 0;
+  transform: translateX(100%);
+  top: 0;
+  width: 360px;
+  height: calc(100vh - 65px);
+  background-color: #282f3b;
+  border: 1px solid #000;
+  border-top: none;
+  border-bottom: none;
+  padding: 0px 0 16px 20px;
+  z-index: 1;
+  font-size: 14px;
+}
+.scrollbar {
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+}
+.vehicle-info {
+  height: calc(100vh - 50px);
+}
+.title {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 24px;
+  margin: 10px 0 16px 0;
+}
+.sensor {
+  padding: 6px 0;
+  border-bottom: 1px solid #000;
+}
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+}
+.menu-title {
+  position: relative;
+  padding-left: 8px;
+  margin-bottom: 4px;
+  padding-top: 16px;
+  border-top: 1px solid #000;
+}
+.menu-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  width: 2px;
+  height: 14px;
+  background: #14e2a8;
+  opacity: 1;
+}
+.farRange {
+  display: none;
+}
+.farRange:first-of-type {
+  display: block;
+}

@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 services:
   # API Server
   server:
@@ -21,6 +21,12 @@ services:
       - server
     networks:
       - sorasvl
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    command: npm start
 
   # Nginx
   nginx:
@@ -31,7 +37,7 @@ services:
       - server
       - client
     ports:
-      - "80:80"
+      - '80:80'
     networks:
       - sorasvl
 
@@ -43,7 +49,7 @@ services:
     build:
       context: ./mongo
     ports:
-      - "28018:27017"
+      - '28018:27017'
     networks:
       - sorasvl
 

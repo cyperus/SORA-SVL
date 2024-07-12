@@ -1,37 +1,50 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
-
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import styles from './layout.module.css';
+import { Layout } from 'antd';
+const { Header, Content, Footer, Sider } = Layout;
 type LayoutProps = {
   children: React.ReactNode;
 };
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const LayoutWrapper: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
   const getClassNames = (path: string) => {
-    const pathName = location.pathname === "/" ? "/maps" : location.pathname;
-    return path === pathName
-      ? "w-full bg-neutral-800 p-4 text-white"
-      : "w-full bg-neutral-300 p-4 text-black hover:bg-neutral-400";
+    const pathName = location.pathname === '/' ? '/maps' : location.pathname;
+    return pathName.startsWith(path) ? { background: '#353e4e', color: '#fff' } : {};
   };
   return (
-    <div className="h-screen w-screen flex flex-row fixed top-0 left-0">
-      <nav className="h-screen w-64 bg-neutral-300 flex flex-col">
-        <Link to="/maps">
-          <div className={getClassNames("/maps")}>Maps</div>
-        </Link>
-        <Link to="/vehicles">
-          <div className={getClassNames("/vehicles")}>Vehicles</div>
-        </Link>
-        <Link to="/plugins">
-          <div className={getClassNames("/plugins")}>Plugins</div>
-        </Link>
-        <Link to="/simulations">
-          <div className={getClassNames("/simulations")}>Simulations</div>
-        </Link>
-      </nav>
-      <div className="h-screen flex-1 overflow-scroll">{children}</div>
-    </div>
+    <Layout hasSider>
+      <Sider
+        style={{
+          overflow: 'auto',
+          height: '100vh',
+          position: 'fixed',
+          left: 0,
+          top: 0,
+          bottom: 0,
+          paddingTop: '100px',
+          paddingRight: '12px',
+          paddingLeft: '12px',
+        }}
+      >
+        <div className={styles.menuLi} style={getClassNames('/vehicles')}>
+          <Link to='/vehicles'>主车模型</Link>
+        </div>
+        {/* <div className={styles.menuLi} style={getClassNames("/maps")}>
+          <Link to="/maps">地图</Link>
+        </div> */}
+        <div className={styles.menuLi} style={getClassNames('/simulations')}>
+          <Link to='/simulations'>仿真</Link>
+        </div>
+      </Sider>
+      <Layout style={{ marginLeft: 200 }}>
+        <Content style={{ overflow: 'initial' }}>
+          <div style={{ background: '#282f3b' }}>{children}</div>
+        </Content>
+      </Layout>
+    </Layout>
   );
 };
 
-export default Layout;
+export default LayoutWrapper;
